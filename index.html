@@ -5,81 +5,88 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Daily Words by Rubby</title>
 <link id="favicon" rel="icon" type="image/svg+xml" href="">
-
 <style>
-:root{--bg:#f6f9ff;--card:#fff;--text:#111;--muted:#6b7280;--brand:#2563EB}
-*{box-sizing:border-box} body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Arial; 
-background:linear-gradient(180deg,#eaf2ff,#ffffff 60%)}
+:root{--bg:#f6f9ff;--card:#fff;--text:#111;--muted:#6b7280;--brand:#2563EB;--accent:#2563EB}
+*{box-sizing:border-box}
+body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,"PingFang SC","Hiragino Sans GB","Noto Sans CJK SC","Microsoft YaHei",sans-serif;background:linear-gradient(180deg,#eaf2ff,#ffffff 60%)}
 .container{max-width:1000px;margin:40px auto;padding:0 16px}
-.card{background:var(--card);border-radius:16px;padding:24px;
-box-shadow:0 10px 30px rgba(0,0,0,.08)}
+.card{background:var(--card);border-radius:16px;padding:24px;box-shadow:0 10px 30px rgba(0,0,0,.08)}
 .topbar{display:flex;gap:12px;align-items:center;justify-content:space-between;margin-bottom:14px}
 .brand{display:flex;gap:10px;align-items:center}
 .brand svg{width:32px;height:32px;display:block}
 .brand-title{font-weight:800;letter-spacing:.2px;font-size:20px}
 .logo-chooser{display:flex;gap:8px;align-items:center}
-.small{font-size:13px;color:#64748b}
+.small{font-size:13px;color:var(--muted)}
 .search{width:100%;height:42px;padding:0 12px;font-size:16px;border:1px solid #e5e7eb;border-radius:10px}
 .filters{display:flex;gap:10px;flex-wrap:wrap;justify-content:flex-end}
-.pill{display:flex;align-items:center;padding:6px 10px;border-radius:999px;background:#eff6ff;color:#1d4ed8;
-border:1px solid #bfdbfe;font-size:14px}
-.list{margin:8px 0 0;padding:0;list-style:none} .item{border-bottom:1px solid #f1f5f9;padding:10px 0}
+.pill{display:flex;align-items:center;padding:6px 10px;border-radius:999px;background:#eff6ff;color:#1d4ed8;border:1px solid #bfdbfe;font-size:14px}
+.list{margin:8px 0 0;padding:0;list-style:none}
+.item{border-bottom:1px solid #f1f5f9;padding:10px 0}
 .summary{display:flex;gap:8px;align-items:center;justify-content:space-between;cursor:pointer}
-.word{font-weight:700} .count{margin-top:6px;color:#64748b;font-size:14px}
+.controls{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.word{font-weight:700}
+.count{margin-top:6px;color:#64748b;font-size:14px}
 .details{margin-top:8px;color:#111;line-height:1.6}
-.ipa{background:#f8fafc;border-radius:8px;padding:8px;border:1px solid #eef2f7;margin-bottom:6px}
+.ipa{background:#f8fafc;border-radius:8px;padding:8px;border:1px solid #eef2f7;margin-bottom:6px;display:flex;gap:12px;align-items:center;flex-wrap:wrap}
 .btn{height:40px;padding:0 14px;border:none;border-radius:10px;background:var(--brand);color:#fff}
-</style>
+.badge{font-size:12px;background:#e2e8f0;color:#334155;border-radius:6px;padding:2px 6px;white-space:nowrap}
 
+.spk-btn{display:inline-flex;align-items:center;gap:4px;border:1px solid #e5e7eb;border-radius:10px;padding:4px 8px;font-size:13px;color:#334155;background:#fff;cursor:pointer}
+.spk-btn .spk{width:16px;height:16px}
+.spk-btn:hover{border-color:#cbd5e1}
+.spk-btn.playing{background:#e0ebff;border-color:var(--accent);color:#1d4ed8}
+.spk-pair{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+
+.hint{color:#64748b;font-size:12px;margin-top:4px}
+</style>
 </head>
 <body>
+  <div class="container">
+    <div class="card">
 
-<div class="container">
-<div class="card">
+      <div class="topbar">
+        <div class="brand">
+          <span id="logo-slot" aria-label="logo"></span>
+          <div class="brand-title">Daily Words by Rubby</div>
+        </div>
+        <div class="logo-chooser">
+          <span class="small">Logo：</span>
+          <select id="logoSelect" title="Switch logo">
+            <option value="C">C · Focus（默认）</option>
+            <option value="B">B · Glass</option>
+            <option value="A">A · Geo</option>
+          </select>
+          <button id="export" class="btn">Export CSV</button>
+        </div>
+      </div>
 
-  <div class="topbar">
-    <div class="brand">
-      <span id="logo-slot"></span>
-      <div class="brand-title">Daily Words by Rubby</div>
-    </div>
+      <input id="search" class="search" type="search" placeholder="Search（中文/English，如 apple / 苹果 / towel）">
+      <div class="filters"><label class="pill"><input type="checkbox" class="cat-filter" value="Fruits" checked>Fruits</label><label class="pill"><input type="checkbox" class="cat-filter" value="Vegetables" checked>Vegetables</label><label class="pill"><input type="checkbox" class="cat-filter" value="Daily" checked>Daily</label></div>
+      <div class="count" id="count"></div>
+      <ul id="list" class="list"></ul>
 
-    <div class="logo-chooser">
-      <span class="small">Logo：</span>
-      <select id="logoSelect">
-        <option value="C">C · Focus(默认)</option>
-        <option value="B">B · Glass</option>
-        <option value="A">A · Geo</option>
-      </select>
-      <button id="export" class="btn">Export</button>
+      <div class="hint">提示：点击英文单词可用默认口音朗读；展开后可分别播放英式🔉 / 美式🔊。如无声音，尝试点一下页面以允许音频。</div>
     </div>
   </div>
-
-  <input id="search" class="search" type="search" placeholder="Search（中文/English）">
-  <div class="filters"><label class="pill"><input type="checkbox" class="cat-filter" value="Fruits" checked>Fruits</label><label class="pill"><input type="checkbox" class="cat-filter" value="Vegetables" checked>Vegetables</label><label class="pill"><input type="checkbox" class="cat-filter" value="Daily" checked>Daily</label></div>
-  <div class="count" id="count"></div>
-  <ul id="list" class="list"></ul>
-
-</div>
-</div>
 
 <script>
 const RAW = [{"category": "Fruits", "zh": "苹果", "en": "apple", "ipa_br": "/ˈæp.əl/", "ipa_am": "/ˈæp.əl/", "example": "I eat an apple every morning."}, {"category": "Fruits", "zh": "香蕉", "en": "banana", "ipa_br": "/bəˈnɑː.nə/", "ipa_am": "/bəˈnæn.ə/", "example": "Bananas are rich in potassium."}, {"category": "Fruits", "zh": "橙子", "en": "orange", "ipa_br": "/ˈɒr.ɪndʒ/", "ipa_am": "/ˈɔːr.ɪndʒ/", "example": "Would you like some orange juice?"}, {"category": "Fruits", "zh": "葡萄", "en": "grape", "ipa_br": "/ɡreɪp/", "ipa_am": "/ɡreɪp/", "example": "These grapes taste sweet."}, {"category": "Fruits", "zh": "草莓", "en": "strawberry", "ipa_br": "/ˈstrɔː.bər.i/", "ipa_am": "/ˈstrɔːˌbɛr.i/", "example": "Strawberry jam is delicious."}, {"category": "Fruits", "zh": "西瓜", "en": "watermelon", "ipa_br": "/ˈwɔː.təˌmel.ən/", "ipa_am": "/ˈwɔː.tɚˌmel.ən/", "example": "We had watermelon at the picnic."}, {"category": "Fruits", "zh": "哈密瓜/甜瓜", "en": "melon", "ipa_br": "/ˈmel.ən/", "ipa_am": "/ˈmel.ən/", "example": "This melon is very juicy."}, {"category": "Fruits", "zh": "菠萝/凤梨", "en": "pineapple", "ipa_br": "/ˈpaɪnˌæp.əl/", "ipa_am": "/ˈpaɪnˌæp.əl/", "example": "Pineapple on pizza is controversial."}, {"category": "Fruits", "zh": "桃子", "en": "peach", "ipa_br": "/piːtʃ/", "ipa_am": "/piːtʃ/", "example": "The peach is soft and ripe."}, {"category": "Fruits", "zh": "梨", "en": "pear", "ipa_br": "/peə/", "ipa_am": "/per/", "example": "She sliced a pear for dessert."}, {"category": "Fruits", "zh": "樱桃", "en": "cherry", "ipa_br": "/ˈtʃer.i/", "ipa_am": "/ˈtʃer.i/", "example": "The cake is topped with cherries."}, {"category": "Fruits", "zh": "柠檬", "en": "lemon", "ipa_br": "/ˈlem.ən/", "ipa_am": "/ˈlem.ən/", "example": "Add lemon to your tea."}, {"category": "Fruits", "zh": "青柠", "en": "lime", "ipa_br": "/laɪm/", "ipa_am": "/laɪm/", "example": "Lime adds a fresh flavor."}, {"category": "Fruits", "zh": "蓝莓", "en": "blueberry", "ipa_br": "/ˈbluːˌber.i/", "ipa_am": "/ˈbluːˌbɛr.i/", "example": "Blueberry muffins are my favorite."}, {"category": "Fruits", "zh": "黑莓", "en": "blackberry", "ipa_br": "/ˈblækˌber.i/", "ipa_am": "/ˈblækˌbɛr.i/", "example": "We picked blackberries in the woods."}, {"category": "Fruits", "zh": "覆盆子", "en": "raspberry", "ipa_br": "/ˈrɑːzˌber.i/", "ipa_am": "/ˈræzˌbɛr.i/", "example": "Raspberry sauce goes well with cheesecake."}, {"category": "Fruits", "zh": "猕猴桃", "en": "kiwi", "ipa_br": "/ˈkiː.wiː/", "ipa_am": "/ˈkiː.wiː/", "example": "Peel the kiwi before eating."}, {"category": "Fruits", "zh": "芒果", "en": "mango", "ipa_br": "/ˈmæŋ.ɡəʊ/", "ipa_am": "/ˈmæŋ.ɡoʊ/", "example": "Mango smoothies are refreshing."}, {"category": "Fruits", "zh": "椰子", "en": "coconut", "ipa_br": "/ˈkəʊ.kə.nʌt/", "ipa_am": "/ˈkoʊ.kə.nʌt/", "example": "Coconut water is hydrating."}, {"category": "Fruits", "zh": "木瓜", "en": "papaya", "ipa_br": "/pəˈpaɪ.ə/", "ipa_am": "/pəˈpaɪ.ə/", "example": "Papaya aids digestion."}, {"category": "Fruits", "zh": "百香果", "en": "passion fruit", "ipa_br": "/ˈpæʃ.ən fruːt/", "ipa_am": "/ˈpæʃ.ən fruːt/", "example": "Passion fruit has a unique aroma."}, {"category": "Fruits", "zh": "石榴", "en": "pomegranate", "ipa_br": "/ˈpɒm.ɪˌgræn.ɪt/", "ipa_am": "/ˈpɑː.məˌgræn.ɪt/", "example": "Pomegranate seeds are crunchy."}, {"category": "Fruits", "zh": "李子", "en": "plum", "ipa_br": "/plʌm/", "ipa_am": "/plʌm/", "example": "She ate a ripe plum."}, {"category": "Fruits", "zh": "杏", "en": "apricot", "ipa_br": "/ˈeɪ.prɪ.kɒt/", "ipa_am": "/ˈeɪ.prɪ.kɑːt/", "example": "Dried apricots are sweet."}, {"category": "Fruits", "zh": "葡萄柚", "en": "grapefruit", "ipa_br": "/ˈgreɪp.fruːt/", "ipa_am": "/ˈgreɪp.fruːt/", "example": "Grapefruit can be bitter."}, {"category": "Fruits", "zh": "柚子", "en": "pomelo", "ipa_br": "/ˈpɒm.ɪləʊ/", "ipa_am": "/ˈpɑː.məˌloʊ/", "example": "Pomelo is similar to grapefruit."}, {"category": "Fruits", "zh": "樱桃番茄", "en": "cherry tomato", "ipa_br": "/tʃer.i təˈmɑː.təʊ/", "ipa_am": "/tʃer.i təˈmeɪ.toʊ/", "example": "Add cherry tomatoes to the salad."}, {"category": "Fruits", "zh": "桑葚", "en": "mulberry", "ipa_br": "/ˈmʌlˌber.i/", "ipa_am": "/ˈmʌlˌbɛr.i/", "example": "Mulberries stain easily."}, {"category": "Fruits", "zh": "无花果", "en": "fig", "ipa_br": "/fɪɡ/", "ipa_am": "/fɪɡ/", "example": "Fresh figs are seasonal."}, {"category": "Fruits", "zh": "荔枝", "en": "lychee", "ipa_br": "/ˈliː.tʃiː/", "ipa_am": "/ˈliː.tʃiː/", "example": "Lychees have a floral taste."}, {"category": "Fruits", "zh": "龙眼", "en": "longan", "ipa_br": "/ˈlɒŋ.ɡən/", "ipa_am": "/ˈlɑːŋ.ɡən/", "example": "Longan is sweet and juicy."}, {"category": "Fruits", "zh": "山竹", "en": "mangosteen", "ipa_br": "/ˈmæŋ.ɡəˌstiːn/", "ipa_am": "/ˈmæŋ.ɡoʊˌstiːn/", "example": "Mangosteen is called the queen of fruits."}, {"category": "Fruits", "zh": "杨桃", "en": "starfruit", "ipa_br": "/ˈstɑː.fruːt/", "ipa_am": "/ˈstɑːr.fruːt/", "example": "Starfruit has a star shape when sliced."}, {"category": "Fruits", "zh": "蔓越莓", "en": "cranberry", "ipa_br": "/ˈkræn.bər.i/", "ipa_am": "/ˈkræn.bɛr.i/", "example": "Cranberry juice is tart."}, {"category": "Fruits", "zh": "枣", "en": "jujube", "ipa_br": "/ˈdʒuːdʒuːb/", "ipa_am": "/ˈdʒuːdʒuːb/", "example": "Jujube is often dried."}, {"category": "Fruits", "zh": "波罗蜜", "en": "jackfruit", "ipa_br": "/ˈdʒæk.fruːt/", "ipa_am": "/ˈdʒæk.fruːt/", "example": "Jackfruit can be used as a meat substitute."}, {"category": "Fruits", "zh": "榴莲", "en": "durian", "ipa_br": "/ˈdjʊə.ri.ən/", "ipa_am": "/ˈdʊr.i.ən/", "example": "Durian has a strong smell."}, {"category": "Fruits", "zh": "椰枣", "en": "date", "ipa_br": "/deɪt/", "ipa_am": "/deɪt/", "example": "Dates are very sweet."}, {"category": "Fruits", "zh": "橘子", "en": "tangerine", "ipa_br": "/ˌtæn.dʒəˈriːn/", "ipa_am": "/ˌtæn.dʒəˈriːn/", "example": "Tangerines are easy to peel."}, {"category": "Vegetables", "zh": "胡萝卜", "en": "carrot", "ipa_br": "/ˈkær.ət/", "ipa_am": "/ˈkær.ət/", "example": "Carrots are good for your eyes."}, {"category": "Vegetables", "zh": "西红柿/番茄", "en": "tomato", "ipa_br": "/təˈmɑː.təʊ/", "ipa_am": "/təˈmeɪ.toʊ/", "example": "Tomatoes are used in many sauces."}, {"category": "Vegetables", "zh": "黄瓜", "en": "cucumber", "ipa_br": "/ˈkjuː.kʌm.bə/", "ipa_am": "/ˈkjuː.kʌm.bɚ/", "example": "Cucumber is refreshing."}, {"category": "Vegetables", "zh": "土豆", "en": "potato", "ipa_br": "/pəˈteɪ.təʊ/", "ipa_am": "/pəˈteɪ.toʊ/", "example": "Mashed potatoes are creamy."}, {"category": "Vegetables", "zh": "红薯/地瓜", "en": "sweet potato", "ipa_br": "/swiːt pəˈteɪ.təʊ/", "ipa_am": "/swiːt pəˈteɪ.toʊ/", "example": "Sweet potatoes are nutritious."}, {"category": "Vegetables", "zh": "洋葱", "en": "onion", "ipa_br": "/ˈʌn.jən/", "ipa_am": "/ˈʌn.jən/", "example": "Onions can make you cry."}, {"category": "Vegetables", "zh": "大蒜", "en": "garlic", "ipa_br": "/ˈɡɑː.lɪk/", "ipa_am": "/ˈɡɑːr.lɪk/", "example": "Garlic adds strong flavor."}, {"category": "Vegetables", "zh": "姜", "en": "ginger", "ipa_br": "/ˈdʒɪn.dʒə/", "ipa_am": "/ˈdʒɪn.dʒɚ/", "example": "Ginger warms the body."}, {"category": "Vegetables", "zh": "西兰花", "en": "broccoli", "ipa_br": "/ˈbrɒk.əl.i/", "ipa_am": "/ˈbrɑː.kə.li/", "example": "Broccoli is rich in fiber."}, {"category": "Vegetables", "zh": "花椰菜/菜花", "en": "cauliflower", "ipa_br": "/ˈkɒl.ɪˌflaʊ.ə/", "ipa_am": "/ˈkɑː.ləˌflaʊ.ɚ/", "example": "Cauliflower rice is low-carb."}, {"category": "Vegetables", "zh": "生菜", "en": "lettuce", "ipa_br": "/ˈlet.ɪs/", "ipa_am": "/ˈlet.ɪs/", "example": "Lettuce is used in salads."}, {"category": "Vegetables", "zh": "菠菜", "en": "spinach", "ipa_br": "/ˈspɪn.ɪtʃ/", "ipa_am": "/ˈspɪn.ɪtʃ/", "example": "Spinach is high in iron."}, {"category": "Vegetables", "zh": "卷心菜", "en": "cabbage", "ipa_br": "/ˈkæb.ɪdʒ/", "ipa_am": "/ˈkæb.ɪdʒ/", "example": "Cabbage can be fermented into kimchi."}, {"category": "Vegetables", "zh": "蘑菇", "en": "mushroom", "ipa_br": "/ˈmʌʃ.ruːm/", "ipa_am": "/ˈmʌʃ.ruːm/", "example": "Mushrooms soak up sauces."}, {"category": "Vegetables", "zh": "玉米", "en": "corn", "ipa_br": "/kɔːn/", "ipa_am": "/kɔːrn/", "example": "Corn on the cob is tasty."}, {"category": "Vegetables", "zh": "豌豆", "en": "peas", "ipa_br": "/piːz/", "ipa_am": "/piːz/", "example": "Peas are small and sweet."}, {"category": "Vegetables", "zh": "四季豆/豆角", "en": "green beans", "ipa_br": "/ˌgriːn ˈbiːnz/", "ipa_am": "/ˌgriːn ˈbiːnz/", "example": "Green beans are crunchy."}, {"category": "Vegetables", "zh": "彩椒（甜椒）", "en": "bell pepper", "ipa_br": "/bel ˈpep.ə/", "ipa_am": "/bel ˈpep.ɚ/", "example": "Bell peppers come in many colors."}, {"category": "Vegetables", "zh": "辣椒", "en": "chili pepper", "ipa_br": "/ˈtʃɪl.i/", "ipa_am": "/ˈtʃɪl.i/", "example": "Chili peppers add heat."}, {"category": "Vegetables", "zh": "茄子", "en": "eggplant / aubergine", "ipa_br": "/ˈeɡ.plɑːnt/", "ipa_am": "/ˈɛɡˌplænt/", "example": "Eggplant absorbs oil easily."}, {"category": "Vegetables", "zh": "芹菜", "en": "celery", "ipa_br": "/ˈsel.ər.i/", "ipa_am": "/ˈsel.ɚ.i/", "example": "Celery is crunchy."}, {"category": "Vegetables", "zh": "南瓜", "en": "pumpkin", "ipa_br": "/ˈpʌmp.kɪn/", "ipa_am": "/ˈpʌmp.kɪn/", "example": "Pumpkin soup is comforting."}, {"category": "Vegetables", "zh": "西葫芦", "en": "zucchini", "ipa_br": "/zuːˈkiː.ni/", "ipa_am": "/zuːˈkiː.ni/", "example": "Zucchini noodles are popular."}, {"category": "Vegetables", "zh": "芦笋", "en": "asparagus", "ipa_br": "/əˈspær.ə.ɡəs/", "ipa_am": "/əˈspær.ə.ɡəs/", "example": "Asparagus is in season in spring."}, {"category": "Vegetables", "zh": "葱/香葱", "en": "scallion / green onion", "ipa_br": "/ˈskæl.jən/", "ipa_am": "/ˈskæl.jən/", "example": "Scallions add freshness."}, {"category": "Vegetables", "zh": "莴笋", "en": "romaine / lettuce stem", "ipa_br": "/rəʊˈmeɪn/", "ipa_am": "/roʊˈmeɪn/", "example": "Romaine is used in Caesar salad."}, {"category": "Vegetables", "zh": "藕", "en": "lotus root", "ipa_br": "/ˈləʊ.təs ruːt/", "ipa_am": "/ˈloʊ.təs ruːt/", "example": "Lotus root is crunchy when stir-fried."}, {"category": "Vegetables", "zh": "苦瓜", "en": "bitter melon", "ipa_br": "/ˈbɪt.ə ˈmel.ən/", "ipa_am": "/ˈbɪt.ɚ ˈmel.ən/", "example": "Bitter melon has a distinct taste."}, {"category": "Vegetables", "zh": "竹笋", "en": "bamboo shoot", "ipa_br": "/ˈbæm.buː ʃuːt/", "ipa_am": "/ˈbæm.buː ʃuːt/", "example": "Bamboo shoots are tender."}, {"category": "Vegetables", "zh": "海带", "en": "kelp", "ipa_br": "/kelp/", "ipa_am": "/kelp/", "example": "Kelp is used in soups."}, {"category": "Vegetables", "zh": "香菜", "en": "cilantro / coriander", "ipa_br": "/sɪˈlæn.trəʊ/", "ipa_am": "/sɪˈlæn.troʊ/", "example": "Cilantro divides opinions."}, {"category": "Vegetables", "zh": "紫甘蓝", "en": "red cabbage", "ipa_br": "/red ˈkæb.ɪdʒ/", "ipa_am": "/red ˈkæb.ɪdʒ/", "example": "Red cabbage is colorful."}, {"category": "Vegetables", "zh": "甜菜根", "en": "beetroot", "ipa_br": "/ˈbiːt.ruːt/", "ipa_am": "/ˈbiːt.ruːt/", "example": "Beetroot can be roasted."}, {"category": "Vegetables", "zh": "土豆泥原料", "en": "russet potato", "ipa_br": "/ˈrʌs.ɪt/", "ipa_am": "/ˈrʌs.ɪt/", "example": "Russet potatoes are great for baking."}, {"category": "Daily", "zh": "牙刷", "en": "toothbrush", "ipa_br": "/ˈtuːθ.brʌʃ/", "ipa_am": "/ˈtuːθ.brʌʃ/", "example": "Use your toothbrush twice a day."}, {"category": "Daily", "zh": "牙膏", "en": "toothpaste", "ipa_br": "/ˈtuːθ.peɪst/", "ipa_am": "/ˈtuːθ.peɪst/", "example": "Don't forget the toothpaste."}, {"category": "Daily", "zh": "牙线", "en": "dental floss", "ipa_br": "/ˈden.təl flɒs/", "ipa_am": "/ˈden.təl flɔːs/", "example": "Dental floss keeps gums healthy."}, {"category": "Daily", "zh": "毛巾", "en": "towel", "ipa_br": "/ˈtaʊ.əl/", "ipa_am": "/ˈtaʊ.əl/", "example": "Grab a clean towel."}, {"category": "Daily", "zh": "肥皂", "en": "soap", "ipa_br": "/səʊp/", "ipa_am": "/soʊp/", "example": "Wash your hands with soap."}, {"category": "Daily", "zh": "洗手液", "en": "hand soap", "ipa_br": "/hænd səʊp/", "ipa_am": "/hænd soʊp/", "example": "We need more hand soap."}, {"category": "Daily", "zh": "洗发水", "en": "shampoo", "ipa_br": "/ʃæmˈpuː/", "ipa_am": "/ʃæmˈpuː/", "example": "This shampoo smells nice."}, {"category": "Daily", "zh": "护发素", "en": "conditioner", "ipa_br": "/kənˈdɪʃ.ən.ər/", "ipa_am": "/kənˈdɪʃ.ən.ɚ/", "example": "Use conditioner after shampoo."}, {"category": "Daily", "zh": "沐浴露", "en": "body wash", "ipa_br": "/ˈbɒd.i wɒʃ/", "ipa_am": "/ˈbɑː.di wɑːʃ/", "example": "I prefer body wash to soap."}, {"category": "Daily", "zh": "梳子", "en": "comb", "ipa_br": "/kəʊm/", "ipa_am": "/koʊm/", "example": "He combed his hair."}, {"category": "Daily", "zh": "纸巾", "en": "tissue", "ipa_br": "/ˈtɪʃ.uː/", "ipa_am": "/ˈtɪʃ.uː/", "example": "Do you have a tissue?"}, {"category": "Daily", "zh": "卫生纸", "en": "toilet paper", "ipa_br": "/ˈtɔɪ.lət ˌpeɪ.pə/", "ipa_am": "/ˈtɔɪ.lət ˌpeɪ.pɚ/", "example": "We ran out of toilet paper."}, {"category": "Daily", "zh": "垃圾袋", "en": "trash bag", "ipa_br": "/træʃ bæɡ/", "ipa_am": "/træʃ bæɡ/", "example": "Replace the trash bag, please."}, {"category": "Daily", "zh": "洗衣液", "en": "laundry detergent", "ipa_br": "/ˈlɔːn.dri dɪˈtɜː.dʒənt/", "ipa_am": "/ˈlɔːn.dri dɪˈtɝː.dʒənt/", "example": "Add the laundry detergent first."}, {"category": "Daily", "zh": "衣架", "en": "hanger", "ipa_br": "/ˈhæŋ.ə/", "ipa_am": "/ˈhæŋ.ɚ/", "example": "Hang your coat on a hanger."}, {"category": "Daily", "zh": "杯子", "en": "cup / mug", "ipa_br": "/kʌp/", "ipa_am": "/mʌɡ/", "example": "I drink coffee from a mug."}, {"category": "Daily", "zh": "水瓶", "en": "water bottle", "ipa_br": "/ˈwɔː.tə ˌbɒt.əl/", "ipa_am": "/ˈwɑː.tɚ ˌbɑː.t̬əl/", "example": "Bring your water bottle."}, {"category": "Daily", "zh": "背包", "en": "backpack", "ipa_br": "/ˈbæk.pæk/", "ipa_am": "/ˈbæk.pæk/", "example": "She carries a backpack to school."}, {"category": "Daily", "zh": "钱包", "en": "wallet", "ipa_br": "/ˈwɒl.ɪt/", "ipa_am": "/ˈwɑː.lɪt/", "example": "I left my wallet at home."}, {"category": "Daily", "zh": "钥匙", "en": "key", "ipa_br": "/kiː/", "ipa_am": "/kiː/", "example": "Don't forget your keys."}, {"category": "Daily", "zh": "雨伞", "en": "umbrella", "ipa_br": "/ʌmˈbrel.ə/", "ipa_am": "/ʌmˈbrel.ə/", "example": "Take an umbrella; it might rain."}, {"category": "Daily", "zh": "手电筒", "en": "flashlight / torch", "ipa_br": "/flæʃ.laɪt/", "ipa_am": "/tɔːrtʃ/", "example": "Use a flashlight in the dark."}, {"category": "Daily", "zh": "口罩", "en": "mask", "ipa_br": "/mɑːsk/", "ipa_am": "/mæsk/", "example": "Wear a mask on the subway."}, {"category": "Daily", "zh": "创可贴", "en": "band-aid / plaster", "ipa_br": "/ˈplɑː.stər/", "ipa_am": "/ˈplæs.tɚ/", "example": "Put a band-aid on the cut."}, {"category": "Daily", "zh": "消毒湿巾", "en": "disinfecting wipes", "ipa_br": "/ˌdɪs.ɪnˈfekt.ɪŋ waɪps/", "ipa_am": "/ˌdɪs.ɪnˈfekt.ɪŋ waɪps/", "example": "Use disinfecting wipes for the table."}, {"category": "Daily", "zh": "闹钟", "en": "alarm clock", "ipa_br": "/əˈlɑːm klɒk/", "ipa_am": "/əˈlɑːrm klɑːk/", "example": "Set your alarm clock for 7."}, {"category": "Daily", "zh": "充电器", "en": "charger", "ipa_br": "/ˈtʃɑː.dʒə/", "ipa_am": "/ˈtʃɑːr.dʒɚ/", "example": "This charger is fast."}, {"category": "Daily", "zh": "耳机", "en": "earphones / headphones", "ipa_br": "/ˈɪə.fəʊnz/", "ipa_am": "/ˈhedˌfoʊnz/", "example": "Use headphones on the bus."}, {"category": "Daily", "zh": "电脑", "en": "computer / laptop", "ipa_br": "/kəmˈpjuː.tə/", "ipa_am": "/kəmˈpjuː.tɚ/", "example": "I work on a laptop."}, {"category": "Daily", "zh": "键盘", "en": "keyboard", "ipa_br": "/ˈkiː.bɔːd/", "ipa_am": "/ˈkiː.bɔːrd/", "example": "The keyboard is mechanical."}, {"category": "Daily", "zh": "鼠标", "en": "mouse", "ipa_br": "/maʊs/", "ipa_am": "/maʊs/", "example": "The mouse is wireless."}, {"category": "Daily", "zh": "剪刀", "en": "scissors", "ipa_br": "/ˈsɪz.əz/", "ipa_am": "/ˈsɪz.ɚz/", "example": "Use scissors carefully."}, {"category": "Daily", "zh": "胶带", "en": "tape", "ipa_br": "/teɪp/", "ipa_am": "/teɪp/", "example": "We need clear tape."}, {"category": "Daily", "zh": "订书机", "en": "stapler", "ipa_br": "/ˈsteɪ.plə/", "ipa_am": "/ˈsteɪ.plɚ/", "example": "Where is the stapler?"}, {"category": "Daily", "zh": "记号笔", "en": "marker", "ipa_br": "/ˈmɑː.kə/", "ipa_am": "/ˈmɑːr.kɚ/", "example": "Use a marker to label the box."}, {"category": "Daily", "zh": "记事本", "en": "notebook", "ipa_br": "/ˈnəʊt.bʊk/", "ipa_am": "/ˈnoʊt.bʊk/", "example": "Write it in your notebook."}, {"category": "Daily", "zh": "便签", "en": "sticky notes", "ipa_br": "/ˈstɪk.i nəʊts/", "ipa_am": "/ˈstɪk.i noʊts/", "example": "Leave a sticky note on the fridge."}, {"category": "Daily", "zh": "遥控器", "en": "remote control", "ipa_br": "/rɪˌməʊt kənˈtrəʊl/", "ipa_am": "/rɪˌmoʊt kənˈtroʊl/", "example": "Use the remote control to change channels."}, {"category": "Daily", "zh": "电视", "en": "TV / television", "ipa_br": "/ˈtel.ɪ.vɪʒ.ən/", "ipa_am": "/ˈtel.əˌvɪʒ.ən/", "example": "Turn off the TV before bed."}, {"category": "Daily", "zh": "床", "en": "bed", "ipa_br": "/bed/", "ipa_am": "/bed/", "example": "Make your bed in the morning."}, {"category": "Daily", "zh": "椅子", "en": "chair", "ipa_br": "/tʃeə/", "ipa_am": "/tʃer/", "example": "This chair is comfortable."}, {"category": "Daily", "zh": "桌子", "en": "table", "ipa_br": "/ˈteɪ.bəl/", "ipa_am": "/ˈteɪ.bəl/", "example": "Dinner is on the table."}, {"category": "Daily", "zh": "沙发", "en": "sofa / couch", "ipa_br": "/ˈsəʊ.fə/", "ipa_am": "/kaʊtʃ/", "example": "Sit on the sofa and relax."}, {"category": "Daily", "zh": "灯", "en": "lamp", "ipa_br": "/læmp/", "ipa_am": "/læmp/", "example": "Turn on the desk lamp."}, {"category": "Daily", "zh": "衣服", "en": "clothes", "ipa_br": "/kləʊðz/", "ipa_am": "/kloʊðz/", "example": "Fold your clothes."}, {"category": "Daily", "zh": "鞋子", "en": "shoes", "ipa_br": "/ʃuːz/", "ipa_am": "/ʃuːz/", "example": "Take off your shoes at the door."}, {"category": "Daily", "zh": "外套", "en": "coat", "ipa_br": "/kəʊt/", "ipa_am": "/koʊt/", "example": "Wear a coat; it's cold outside."}, {"category": "Daily", "zh": "围巾", "en": "scarf", "ipa_br": "/skɑːf/", "ipa_am": "/skɑːrf/", "example": "She wore a warm scarf."}];
 const list = document.getElementById('list');
 const search = document.getElementById('search');
-const checks = [...document.querySelectorAll('.cat-filter')];
+const checks = Array.from(document.querySelectorAll('.cat-filter'));
 const countEl = document.getElementById('count');
 const exportBtn = document.getElementById('export');
 const logoSlot = document.getElementById('logo-slot');
 const logoSelect = document.getElementById('logoSelect');
 const favicon = document.getElementById('favicon');
 
-const LOGOS = {
-  A:`<svg xmlns="http://www.w3.org/2000/svg" width="96" height="96" viewBox="0 0 96 96"><defs><linearGradient id="gA" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#3b82f6"/><stop offset="1" stop-color="#2563EB"/></linearGradient></defs><circle cx="48" cy="48" r="44" fill="url(#gA)"/><g fill="#fff" font-family="Inter, Arial, sans-serif" font-weight="800"><text x="22" y="57" font-size="30">D</text><text x="49" y="57" font-size="30">W</text></g></svg>`, B:`<svg xmlns="http://www.w3.org/2000/svg" width="96" height="96" viewBox="0 0 96 96"><defs><radialGradient id="gB" cx="30%" cy="20%" r="80%"><stop offset="0" stop-color="#60a5fa"/><stop offset="1" stop-color="#2563EB"/></radialGradient></defs><circle cx="48" cy="48" r="44" fill="url(#gB)"/><g fill="#fff" font-family="Nunito, Arial, sans-serif" font-weight="900"><text x="22" y="57" font-size="30">D</text><text x="49" y="57" font-size="30">W</text></g><path d="M20 32c8-6 18-9 28-9 10 0 20 3 28 9" fill="none" stroke="#ffffff" stroke-opacity=".25" stroke-width="4" stroke-linecap="round"/></svg>`, C:`<svg xmlns="http://www.w3.org/2000/svg" width="96" height="96" viewBox="0 0 96 96"><defs><linearGradient id="gC" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#60a5fa"/><stop offset="1" stop-color="#2563EB"/></linearGradient></defs><circle cx="48" cy="48" r="44" fill="url(#gC)"/><g fill="#fff" font-family="Nunito, Arial, sans-serif" font-weight="900"><text x="20" y="56" font-size="30">D</text><text id="w" x="44" y="56" font-size="30">W</text></g><circle cx="66" cy="62" r="8" fill="none" stroke="#fff" stroke-width="3"/><rect x="73" y="68" width="10" height="4" rx="2" fill="#fff" transform="rotate(35 78 70)"/></svg>`
-};
+const LOGOS = { A:`<svg xmlns="http://www.w3.org/2000/svg" width="96" height="96" viewBox="0 0 96 96"><defs><linearGradient id="gA" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#3b82f6"/><stop offset="1" stop-color="#2563EB"/></linearGradient></defs><circle cx="48" cy="48" r="44" fill="url(#gA)"/><g fill="#fff" font-family="Inter, Arial, sans-serif" font-weight="800"><text x="22" y="57" font-size="30">D</text><text x="49" y="57" font-size="30">W</text></g></svg>`, B:`<svg xmlns="http://www.w3.org/2000/svg" width="96" height="96" viewBox="0 0 96 96"><defs><radialGradient id="gB" cx="30%" cy="20%" r="80%"><stop offset="0" stop-color="#60a5fa"/><stop offset="1" stop-color="#2563EB"/></radialGradient></defs><circle cx="48" cy="48" r="44" fill="url(#gB)"/><g fill="#fff" font-family="Nunito, Arial, sans-serif" font-weight="900"><text x="22" y="57" font-size="30">D</text><text x="49" y="57" font-size="30">W</text></g><path d="M20 32c8-6 18-9 28-9 10 0 20 3 28 9" fill="none" stroke="#ffffff" stroke-opacity=".25" stroke-width="4" stroke-linecap="round"/></svg>`, C:`<svg xmlns="http://www.w3.org/2000/svg" width="96" height="96" viewBox="0 0 96 96"><defs><linearGradient id="gC" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#60a5fa"/><stop offset="1" stop-color="#2563EB"/></linearGradient></defs><circle cx="48" cy="48" r="44" fill="url(#gC)"/><g fill="#fff" font-family="Nunito, Arial, sans-serif" font-weight="900"><text x="20" y="56" font-size="30">D</text><text id="w" x="44" y="56" font-size="30">W</text></g><circle cx="66" cy="62" r="8" fill="none" stroke="#fff" stroke-width="3"/><rect x="73" y="68" width="10" height="4" rx="2" fill="#fff" transform="rotate(35 78 70)"/></svg>` };
+const ICON_BRE = `<svg class="spk" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 10v4h3l4 3V7L7 10H4z" fill="currentColor"/><path d="M14 10a2 2 0 0 1 0 4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><text x="18" y="20" font-size="6" fill="currentColor">Br</text></svg>`;
+const ICON_AME = `<svg class="spk" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 10v4h3l4 3V7L7 10H4z" fill="currentColor"/><path d="M14 8a4 4 0 0 1 0 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><text x="18" y="20" font-size="6" fill="currentColor">Am</text></svg>`;
 
 function svgToDataUrl(svg) {
-  return "data:image/svg+xml;charset=utf-8," +
-    encodeURIComponent(svg).replace(/'/g,"%27").replace(/"/g,"%22");
+  const enc = encodeURIComponent(svg).replace(/'/g, "%27").replace(/"/g, "%22");
+  return "data:image/svg+xml;charset=utf-8," + enc;
 }
 
 function setLogo(which) {
@@ -90,58 +97,152 @@ function setLogo(which) {
   logoSelect.value = which;
 }
 
-function escapeHtml(s){return String(s).replaceAll('&','&amp;')
-.replaceAll('<','&lt;').replaceAll('>','&gt;');}
+function escapeHtml(s){return String(s).replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;');}
 
-function apply(){
-  const kw = search.value.trim().toLowerCase();
-  const chosen = new Set(checks.filter(c=>c.checked).map(c=>c.value));
-  const filtered = RAW.filter(it =>
-    chosen.has(it.category) &&
-    (!kw || it.en.toLowerCase().includes(kw) || it.zh.includes(kw))
-  );
-  render(filtered);
-}
+function norm(s){return (s||'').toLowerCase().trim();}
 
 function render(items){
-  list.innerHTML = items.map(it => `
-    <li class="item">
-      <details>
-        <summary class="summary">
-          <span><span class="word">${escapeHtml(it.en)}</span> — ${escapeHtml(it.zh)}</span>
-          <span class="small">click to expand</span>
-        </summary>
-        <div class="details">
-          <div class="ipa"><b>BrE</b> ${escapeHtml(it.ipa_br)} | <b>AmE</b> ${escapeHtml(it.ipa_am)}</div>
-          <b>Example:</b> ${escapeHtml(it.example)}
-        </div>
-      </details>
-    </li>`).join('');
+  list.innerHTML = items.map(it => {
+    const titleBtns = `
+      <button class="spk-btn" data-acc="BrE" data-en="${escapeHtml(it.en)}">${ICON_BRE} BrE</button>
+      <button class="spk-btn" data-acc="AmE" data-en="${escapeHtml(it.en)}">${ICON_AME} AmE</button>
+    `;
+    return `
+      <li class="item">
+        <details>
+          <summary class="summary">
+            <span class="controls">
+              <span class="badge">\${it.category}</span>
+              <span class="word speak-title" data-en="\${escapeHtml(it.en)}">\${escapeHtml(it.en)}</span>
+              <span class="small">— \${escapeHtml(it.zh)}</span>
+            </span>
+            <span class="spk-pair" data-en="\${escapeHtml(it.en)}">${titleBtns}</span>
+          </summary>
+          <div class="details">
+            <div class="ipa">
+              <span><b>BrE</b> \${escapeHtml(it.ipa_br)} <button class="spk-btn" data-acc="BrE" data-en="\${escapeHtml(it.en)}">${ICON_BRE} Play</button></span>
+              <span><b>AmE</b> \${escapeHtml(it.ipa_am)} <button class="spk-btn" data-acc="AmE" data-en="\${escapeHtml(it.en)}">${ICON_AME} Play</button></span>
+            </div>
+            <div><b>Example:</b> \${escapeHtml(it.example)}</div>
+          </div>
+        </details>
+      </li>`;
+  }).join('');
   countEl.textContent = `Showing ${items.length} / ${RAW.length} words`;
 }
 
-exportBtn.onclick = () => {
-  let lines = ["Category,Chinese,English,IPA_BrE,IPA_AmE,Example"];
-  list.querySelectorAll('details').forEach(det => {
-    const en = det.querySelector('.word').innerText;
-    const zh = det.querySelector('summary span').innerText.split('—')[1].trim();
-    const details = det.querySelector('.details');
-    const ipa = details.querySelector('.ipa').innerText.replace(/\s+/g,' ');
-    const example = details.innerText.split('Example:')[1].trim();
-    lines.push(`"daily","${zh}","${en}","${ipa}","${example}"`);
-  });
-  const blob = new Blob([lines.join('\n')], {type:"text/csv"});
+function apply(){
+  const kw = norm(search.value);
+  const chosen = new Set(checks.filter(c=>c.checked).map(c=>c.value));
+  const filtered = RAW.filter(it => chosen.has(it.category) && (!kw || norm(it.en).includes(kw) || norm(it.zh).includes(kw)));
+  render(filtered);
+}
+
+// ===== CSV Export =====
+function exportCSV(){
+  const kw = norm(search.value);
+  const chosen = new Set(checks.filter(c=>c.checked).map(c=>c.value));
+  const filtered = RAW.filter(it => chosen.has(it.category) && (!kw || norm(it.en).includes(kw) || norm(it.zh).includes(kw)));
+  const header = ['Category','Chinese','English','IPA_BrE','IPA_AmE','Example'];
+  const lines = [header].concat(filtered.map(it => [it.category,it.zh,it.en,it.ipa_br,it.ipa_am,it.example]));
+  const csv = lines.map(row => row.map(v => `"${String(v).replaceAll('"','""')}"`).join(',')).join('\n');
+  const blob = new Blob([csv], {type:'text/csv;charset=utf-8'});
   const url = URL.createObjectURL(blob);
-  const a = document.createElement('a'); a.href = url; a.download = "daily_words.csv";
-  a.click(); URL.revokeObjectURL(url);
-};
+  const a = document.createElement('a');
+  a.href = url; a.download = 'daily_words.csv';
+  document.body.appendChild(a); a.click();
+  URL.revokeObjectURL(url); a.remove();
+}
 
-search.oninput = apply;
-checks.forEach(c => c.onchange = apply);
+// ===== Speech Synth (Web Speech API) =====
+let voices = [];
+let voicesReady = false;
+const ACCENT_KEY = 'dw_accent'; // default accent for title click
+const defaultAccent = localStorage.getItem(ACCENT_KEY) || 'AmE';
 
-setLogo(localStorage.getItem('dw_logo') || 'C'); // ✅ 默认：C放大镜版
+function refreshVoices() {
+  if (!('speechSynthesis' in window)) return;
+  voices = window.speechSynthesis.getVoices() || [];
+  voicesReady = voices.length > 0;
+}
+
+refreshVoices();
+if ('speechSynthesis' in window) {
+  window.speechSynthesis.onvoiceschanged = () => {
+    refreshVoices();
+  };
+}
+
+function pickVoice(tagPref) {
+  if (!voicesReady) return null;
+  // exact match first
+  let exact = voices.find(v => v.lang === tagPref);
+  if (exact) return exact;
+  // region-weighted
+  if (tagPref === 'en-GB') {
+    const gb = voices.filter(v => /en-GB|British|UK/i.test(v.lang + ' ' + v.name));
+    if (gb.length) return gb[0];
+  }
+  if (tagPref === 'en-US') {
+    const us = voices.filter(v => /en-US|United States|US English/i.test(v.lang + ' ' + v.name));
+    if (us.length) return us[0];
+  }
+  // any English
+  const en = voices.filter(v => /^en(-|_)?/i.test(v.lang));
+  return en[0] || voices[0] || null;
+}
+
+function speak(text, accent, btn) {
+  if (!('speechSynthesis' in window)) {
+    alert('当前浏览器不支持语音朗读。可更换 Chrome / Safari 尝试。');
+    return;
+  }
+  // On some mobile browsers, need a user gesture first; clicking button/word counts.
+  const utter = new SpeechSynthesisUtterance(text);
+  utter.rate = 0.95;
+  utter.pitch = 1.0;
+  utter.lang = (accent === 'BrE') ? 'en-GB' : 'en-US';
+  const v = pickVoice(utter.lang);
+  if (v) utter.voice = v;
+
+  if (btn) btn.classList.add('playing');
+  utter.onend = () => { if (btn) btn.classList.remove('playing'); };
+  try { window.speechSynthesis.cancel(); } catch(e) {}
+  window.speechSynthesis.speak(utter);
+}
+
+// delegation for clicks
+document.addEventListener('click', (e) => {
+  // speaker buttons
+  const spk = e.target.closest('.spk-btn');
+  if (spk && spk.dataset.en) {
+    e.stopPropagation();
+    const acc = spk.dataset.acc || 'AmE';
+    const en = spk.dataset.en;
+    // if user explicitly clicked an accent button, remember it for title-click default
+    localStorage.setItem(ACCENT_KEY, acc);
+    speak(en, acc, spk);
+    return;
+  }
+  // clicking the English word (title) -> speak with default accent
+  const title = e.target.closest('.speak-title');
+  if (title && title.dataset.en) {
+    const en = title.dataset.en;
+    const acc = localStorage.getItem(ACCENT_KEY) || defaultAccent || 'AmE';
+    speak(en, acc, title);
+    return;
+  }
+});
+
+// events
+search.addEventListener('input', apply);
+checks.forEach(c => c.addEventListener('change', apply));
+exportBtn.addEventListener('click', exportCSV);
+logoSelect.addEventListener('change', e => setLogo(e.target.value));
+
+// init
+setLogo(localStorage.getItem('dw_logo') || 'C'); // default main logo
 apply();
 </script>
-
 </body>
 </html>
