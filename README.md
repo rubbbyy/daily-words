@@ -1,54 +1,64 @@
+<div align="center">
+
+<img src="https://emojicdn.elk.sh/📘" width="80"/>
 
 # Daily Words
 
-A static site for everyday English vocabulary (Fruits / Vegetables / Daily items) with search, category filters, collapsible IPA (BrE/AmE) and example sentences, and CSV export.
+**An interactive web app for learning everyday English vocabulary**  
+Search · Category Filter · IPA (BrE/AmE) · Example Sentences
 
-## Edit data
-Open `vocab_data.py` in PyCharm CE and extend `CATEGORIES`. Each entry is:
-`(Chinese, English, IPA_BrE, IPA_AmE, ExampleSentenceEn)`
+🌍 **Live Site** 👉 https://rubbbyy.github.io/daily-words/
 
-## Build
-In PyCharm terminal (or macOS Terminal):
+</div>
+
+---
+
+## ✨ Features
+
+- ✅ Categorized vocabulary: Fruits 🍎 Vegetables 🥕 Daily Items 🧴
+- ✅ Click a word to expand details
+- ✅ Show **BrE/AmE IPA**
+- ✅ English example sentences
+- ✅ Search in English and Chinese
+- ✅ Mobile-friendly UI
+- ✅ Export current list to CSV
+
+🚧 Coming soon…
+
+- 🔊 Pronunciation (TTS)
+- 🎮 Quiz mode — Multiple choice & spelling
+- 🎯 Mark as mastered
+- 🌙 Light/Dark theme switch
+- 🖼️ Add images for visual memory
+- 📚 More categories (Animal · Transportation · School · Clothing…)
+
+---
+
+## 📸 Preview
+
+> (Screenshots of your app, coming soon!)
+
+Example layout:
+
+| List View | Expanded Word |
+|----------|----------------|
+| Word list with filters | IPA & example sentence |
+
+---
+
+## 🛠️ Tech Stack
+
+| Part | Technology |
+|------|------------|
+| Generator | Python (`build_page.py`) |
+| Vocabulary | `vocab_data.py` (Editable) |
+| UI | HTML + CSS + JavaScript |
+| Hosting | GitHub Pages |
+
+---
+
+## 📦 Local Build Instructions
 
 ```bash
-cd /path/to/daily-words
 python3 build_page.py
-```
-
-The page is generated at `site/index.html`.
-
-## Publish to GitHub Pages
-1. Create a new public GitHub repo, e.g. `daily-words`.
-2. In terminal:
-
-```bash
-cd /path/to/daily-words
-git init
-git add .
-git commit -m "Initial commit"
-git branch -M main
-git remote add origin https://github.com/<YOUR_USERNAME>/daily-words.git
-git push -u origin main
-```
-
-3. On GitHub -> Settings -> Pages:
-   - Build and deployment: Choose **Deploy from a branch**
-   - Branch: `main` and **/root**
-   - Save.
-
-URL will be: `https://<YOUR_USERNAME>.github.io/daily-words/`
-(Your `index.html` is under `site/`, so either move files to root or set Pages to use `/root` and ensure `index.html` is at repository root. Easiest: move generated `site/index.html` to root and commit.)
-
-### Option A (simple): keep site at repo root
-Change build script to write `index.html` at repo root, or move it manually:
-```bash
-cp site/index.html index.html
-git add index.html
-git commit -m "Publish index at root"
-git push
-```
-Then set Pages source: `main` / `/root`.
-
-### Option B: use `docs/` folder
-Change the build to `docs/index.html` and select `main` / `/docs` in Pages.
-
+open site/index.html   # macOS, or double-click
