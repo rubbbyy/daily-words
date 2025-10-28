@@ -49,15 +49,15 @@
   },
   {
     "category": "Fruits",
-    "zh": "哈密瓜/甜瓜",
-    "en": "melon",
-    "ipaBr": "/ˈmel.ən/",
-    "ipaAm": "/ˈmel.ən/",
-    "example": "This melon is very juicy."
+    "zh": "哈密瓜",
+    "en": "hami melon",
+    "ipaBr": "/ˈhæm.i ˈmel.ən/",
+    "ipaAm": "/ˈhæm.i ˈmel.ən/",
+    "example": "Hami melon is very juicy."
   },
   {
     "category": "Fruits",
-    "zh": "菠萝/凤梨",
+    "zh": "菠萝",
     "en": "pineapple",
     "ipaBr": "/ˈpaɪnˌæp.əl/",
     "ipaAm": "/ˈpaɪnˌæp.əl/",
@@ -275,8 +275,8 @@
     "category": "Fruits",
     "zh": "枣",
     "en": "jujube",
-    "ipaBr": "/ˈdʒuːdʒuːb/",
-    "ipaAm": "/ˈdʒuːdʒuːb/",
+    "ipaBr": "/ˈdʒuː.dʒuːb/",
+    "ipaAm": "/ˈdʒuː.dʒuːb/",
     "example": "Jujube is often dried."
   },
   {
@@ -312,6 +312,126 @@
     "example": "Tangerines are easy to peel."
   },
   {
+    "category": "Fruits",
+    "zh": "青苹果",
+    "en": "green apple",
+    "ipaBr": "/ˌɡriːn ˈæp.əl/",
+    "ipaAm": "/ˌɡriːn ˈæp.əl/",
+    "example": "Green apples are sour."
+  },
+  {
+    "category": "Fruits",
+    "zh": "火龙果",
+    "en": "dragon fruit",
+    "ipaBr": "/ˈdræɡ.ən fruːt/",
+    "ipaAm": "/ˈdræɡ.ən fruːt/",
+    "example": "Dragon fruit is colorful."
+  },
+  {
+    "category": "Fruits",
+    "zh": "柿子",
+    "en": "persimmon",
+    "ipaBr": "/pəˈsɪm.ən/",
+    "ipaAm": "/pɚˈsɪm.ən/",
+    "example": "Persimmons are sweet when ripe."
+  },
+  {
+    "category": "Fruits",
+    "zh": "李子干",
+    "en": "prune",
+    "ipaBr": "/pruːn/",
+    "ipaAm": "/pruːn/",
+    "example": "Prunes help digestion."
+  },
+  {
+    "category": "Fruits",
+    "zh": "青枣",
+    "en": "green jujube",
+    "ipaBr": "/ɡriːn ˈdʒuː.dʒuːb/",
+    "ipaAm": "/ɡriːn ˈdʒuː.dʒuːb/",
+    "example": "Green jujubes are crisp."
+  },
+  {
+    "category": "Fruits",
+    "zh": "杨梅",
+    "en": "bayberry",
+    "ipaBr": "/ˈbeɪˌber.i/",
+    "ipaAm": "/ˈbeɪˌbɛr.i/",
+    "example": "Bayberries are juicy and red."
+  },
+  {
+    "category": "Fruits",
+    "zh": "番石榴",
+    "en": "guava",
+    "ipaBr": "/ˈɡwɑː.və/",
+    "ipaAm": "/ˈɡwɑː.və/",
+    "example": "Guava juice is refreshing."
+  },
+  {
+    "category": "Fruits",
+    "zh": "柠檬片",
+    "en": "lemon slice",
+    "ipaBr": "/ˈlem.ən slaɪs/",
+    "ipaAm": "/ˈlem.ən slaɪs/",
+    "example": "Add a lemon slice to your water."
+  },
+  {
+    "category": "Fruits",
+    "zh": "果酱",
+    "en": "jam",
+    "ipaBr": "/dʒæm/",
+    "ipaAm": "/dʒæm/",
+    "example": "I spread jam on toast."
+  },
+  {
+    "category": "Fruits",
+    "zh": "水果沙拉",
+    "en": "fruit salad",
+    "ipaBr": "/fruːt ˈsæl.əd/",
+    "ipaAm": "/fruːt ˈsæl.əd/",
+    "example": "Fruit salad is healthy."
+  },
+  {
+    "category": "Fruits",
+    "zh": "水果盘",
+    "en": "fruit platter",
+    "ipaBr": "/fruːt ˈplæt.ər/",
+    "ipaAm": "/fruːt ˈplæt.ɚ/",
+    "example": "We shared a fruit platter."
+  },
+  {
+    "category": "Fruits",
+    "zh": "果汁",
+    "en": "juice",
+    "ipaBr": "/dʒuːs/",
+    "ipaAm": "/dʒuːs/",
+    "example": "Fresh juice is the best."
+  },
+  {
+    "category": "Fruits",
+    "zh": "冰淇淋",
+    "en": "ice cream",
+    "ipaBr": "/ˈaɪs ˌkriːm/",
+    "ipaAm": "/ˈaɪs ˌkriːm/",
+    "example": "I like mango ice cream."
+  },
+  {
+    "category": "Fruits",
+    "zh": "奶昔",
+    "en": "milkshake",
+    "ipaBr": "/ˈmɪlk.ʃeɪk/",
+    "ipaAm": "/ˈmɪlk.ʃeɪk/",
+    "example": "Chocolate milkshake is my favorite."
+  },
+  {
+    "category": "Fruits",
+    "zh": "干果",
+    "en": "dried fruit",
+    "ipaBr": "/draɪd fruːt/",
+    "ipaAm": "/draɪd fruːt/",
+    "example": "Dried fruit is great for snacks."
+  },
+  {
     "category": "Vegetables",
     "zh": "胡萝卜",
     "en": "carrot",
@@ -321,7 +441,23 @@
   },
   {
     "category": "Vegetables",
-    "zh": "西红柿/番茄",
+    "zh": "土豆",
+    "en": "potato",
+    "ipaBr": "/pəˈteɪ.təʊ/",
+    "ipaAm": "/pəˈteɪ.toʊ/",
+    "example": "Mashed potatoes are creamy."
+  },
+  {
+    "category": "Vegetables",
+    "zh": "红薯",
+    "en": "sweet potato",
+    "ipaBr": "/swiːt pəˈteɪ.təʊ/",
+    "ipaAm": "/swiːt pəˈteɪ.toʊ/",
+    "example": "Sweet potatoes are nutritious."
+  },
+  {
+    "category": "Vegetables",
+    "zh": "西红柿",
     "en": "tomato",
     "ipaBr": "/təˈmɑː.təʊ/",
     "ipaAm": "/təˈmeɪ.toʊ/",
@@ -334,22 +470,6 @@
     "ipaBr": "/ˈkjuː.kʌm.bə/",
     "ipaAm": "/ˈkjuː.kʌm.bɚ/",
     "example": "Cucumber is refreshing."
-  },
-  {
-    "category": "Vegetables",
-    "zh": "土豆",
-    "en": "potato",
-    "ipaBr": "/pəˈteɪ.təʊ/",
-    "ipaAm": "/pəˈteɪ.toʊ/",
-    "example": "Mashed potatoes are creamy."
-  },
-  {
-    "category": "Vegetables",
-    "zh": "红薯/地瓜",
-    "en": "sweet potato",
-    "ipaBr": "/swiːt pəˈteɪ.təʊ/",
-    "ipaAm": "/swiːt pəˈteɪ.toʊ/",
-    "example": "Sweet potatoes are nutritious."
   },
   {
     "category": "Vegetables",
@@ -369,7 +489,7 @@
   },
   {
     "category": "Vegetables",
-    "zh": "姜",
+    "zh": "生姜",
     "en": "ginger",
     "ipaBr": "/ˈdʒɪn.dʒə/",
     "ipaAm": "/ˈdʒɪn.dʒɚ/",
@@ -385,7 +505,7 @@
   },
   {
     "category": "Vegetables",
-    "zh": "花椰菜/菜花",
+    "zh": "花菜",
     "en": "cauliflower",
     "ipaBr": "/ˈkɒl.ɪˌflaʊ.ə/",
     "ipaAm": "/ˈkɑː.ləˌflaʊ.ɚ/",
@@ -441,7 +561,7 @@
   },
   {
     "category": "Vegetables",
-    "zh": "四季豆/豆角",
+    "zh": "豆角",
     "en": "green beans",
     "ipaBr": "/ˌgriːn ˈbiːnz/",
     "ipaAm": "/ˌgriːn ˈbiːnz/",
@@ -449,7 +569,7 @@
   },
   {
     "category": "Vegetables",
-    "zh": "彩椒（甜椒）",
+    "zh": "青椒",
     "en": "bell pepper",
     "ipaBr": "/bel ˈpep.ə/",
     "ipaAm": "/bel ˈpep.ɚ/",
@@ -466,7 +586,7 @@
   {
     "category": "Vegetables",
     "zh": "茄子",
-    "en": "eggplant / aubergine",
+    "en": "eggplant",
     "ipaBr": "/ˈeɡ.plɑːnt/",
     "ipaAm": "/ˈɛɡˌplænt/",
     "example": "Eggplant absorbs oil easily."
@@ -505,35 +625,43 @@
   },
   {
     "category": "Vegetables",
-    "zh": "葱/香葱",
-    "en": "scallion / green onion",
+    "zh": "香葱",
+    "en": "scallion",
     "ipaBr": "/ˈskæl.jən/",
     "ipaAm": "/ˈskæl.jən/",
     "example": "Scallions add freshness."
   },
   {
     "category": "Vegetables",
-    "zh": "莴笋",
-    "en": "romaine / lettuce stem",
-    "ipaBr": "/rəʊˈmeɪn/",
-    "ipaAm": "/roʊˈmeɪn/",
-    "example": "Romaine is used in Caesar salad."
+    "zh": "葱",
+    "en": "green onion",
+    "ipaBr": "/ˈɡriːn ˈʌn.jən/",
+    "ipaAm": "/ˈɡriːn ˈʌn.jən/",
+    "example": "Green onion is used in many dishes."
   },
   {
     "category": "Vegetables",
-    "zh": "藕",
-    "en": "lotus root",
-    "ipaBr": "/ˈləʊ.təs ruːt/",
-    "ipaAm": "/ˈloʊ.təs ruːt/",
-    "example": "Lotus root is crunchy when stir-fried."
+    "zh": "蒜苗",
+    "en": "garlic sprout",
+    "ipaBr": "/ˈɡɑː.lɪk spraʊt/",
+    "ipaAm": "/ˈɡɑːr.lɪk spraʊt/",
+    "example": "Garlic sprouts add flavor."
   },
   {
     "category": "Vegetables",
-    "zh": "苦瓜",
-    "en": "bitter melon",
-    "ipaBr": "/ˈbɪt.ə ˈmel.ən/",
-    "ipaAm": "/ˈbɪt.ɚ ˈmel.ən/",
-    "example": "Bitter melon has a distinct taste."
+    "zh": "韭菜",
+    "en": "chives",
+    "ipaBr": "/tʃaɪvz/",
+    "ipaAm": "/tʃaɪvz/",
+    "example": "Chives are used as seasoning."
+  },
+  {
+    "category": "Vegetables",
+    "zh": "芥蓝",
+    "en": "Chinese kale",
+    "ipaBr": "/ˈtʃaɪˌniːz keɪl/",
+    "ipaAm": "/ˈtʃaɪˌniːz keɪl/",
+    "example": "Chinese kale is nutritious."
   },
   {
     "category": "Vegetables",
@@ -554,7 +682,7 @@
   {
     "category": "Vegetables",
     "zh": "香菜",
-    "en": "cilantro / coriander",
+    "en": "cilantro",
     "ipaBr": "/sɪˈlæn.trəʊ/",
     "ipaAm": "/sɪˈlæn.troʊ/",
     "example": "Cilantro divides opinions."
@@ -569,7 +697,7 @@
   },
   {
     "category": "Vegetables",
-    "zh": "甜菜根",
+    "zh": "甜菜",
     "en": "beetroot",
     "ipaBr": "/ˈbiːt.ruːt/",
     "ipaAm": "/ˈbiːt.ruːt/",
@@ -577,11 +705,179 @@
   },
   {
     "category": "Vegetables",
-    "zh": "土豆泥原料",
-    "en": "russet potato",
-    "ipaBr": "/ˈrʌs.ɪt/",
-    "ipaAm": "/ˈrʌs.ɪt/",
-    "example": "Russet potatoes are great for baking."
+    "zh": "茼蒿",
+    "en": "crown daisy",
+    "ipaBr": "/kraʊn ˈdeɪ.zi/",
+    "ipaAm": "/kraʊn ˈdeɪ.zi/",
+    "example": "Crown daisy is aromatic."
+  },
+  {
+    "category": "Vegetables",
+    "zh": "香菇",
+    "en": "shiitake mushroom",
+    "ipaBr": "/ʃɪˈtɑː.keɪ/",
+    "ipaAm": "/ʃɪˈtɑː.ki/",
+    "example": "Shiitake mushrooms are flavorful."
+  },
+  {
+    "category": "Vegetables",
+    "zh": "金针菇",
+    "en": "enoki mushroom",
+    "ipaBr": "/ɪˈnəʊ.ki/",
+    "ipaAm": "/ɪˈnoʊ.ki/",
+    "example": "Enoki mushrooms are long and thin."
+  },
+  {
+    "category": "Vegetables",
+    "zh": "藕",
+    "en": "lotus root",
+    "ipaBr": "/ˈləʊ.təs ruːt/",
+    "ipaAm": "/ˈloʊ.təs ruːt/",
+    "example": "Lotus root is crunchy when stir-fried."
+  },
+  {
+    "category": "Vegetables",
+    "zh": "莴笋",
+    "en": "stem lettuce",
+    "ipaBr": "/stem ˈlet.ɪs/",
+    "ipaAm": "/stem ˈlet.ɪs/",
+    "example": "Stem lettuce is crisp and fresh."
+  },
+  {
+    "category": "Vegetables",
+    "zh": "豆芽",
+    "en": "bean sprout",
+    "ipaBr": "/biːn spraʊt/",
+    "ipaAm": "/biːn spraʊt/",
+    "example": "Bean sprouts are used in noodles."
+  },
+  {
+    "category": "Vegetables",
+    "zh": "苦瓜",
+    "en": "bitter melon",
+    "ipaBr": "/ˈbɪt.ə ˈmel.ən/",
+    "ipaAm": "/ˈbɪt.ɚ ˈmel.ən/",
+    "example": "Bitter melon has a distinct taste."
+  },
+  {
+    "category": "Vegetables",
+    "zh": "冬瓜",
+    "en": "winter melon",
+    "ipaBr": "/ˈwɪn.tə ˈmel.ən/",
+    "ipaAm": "/ˈwɪn.tɚ ˈmel.ən/",
+    "example": "Winter melon soup is cooling."
+  },
+  {
+    "category": "Vegetables",
+    "zh": "丝瓜",
+    "en": "loofah",
+    "ipaBr": "/ˈluː.fə/",
+    "ipaAm": "/ˈluː.fə/",
+    "example": "Loofah is tender when cooked."
+  },
+  {
+    "category": "Vegetables",
+    "zh": "山药",
+    "en": "yam",
+    "ipaBr": "/jæm/",
+    "ipaAm": "/jæm/",
+    "example": "Yam porridge is smooth."
+  },
+  {
+    "category": "Vegetables",
+    "zh": "芋头",
+    "en": "taro",
+    "ipaBr": "/ˈtɑː.rəʊ/",
+    "ipaAm": "/ˈtɑː.roʊ/",
+    "example": "Taro milk tea is popular."
+  },
+  {
+    "category": "Vegetables",
+    "zh": "地瓜叶",
+    "en": "sweet potato leaf",
+    "ipaBr": "/swiːt pəˈteɪ.tə liːf/",
+    "ipaAm": "/swiːt pəˈteɪ.toʊ liːf/",
+    "example": "Sweet potato leaves are edible."
+  },
+  {
+    "category": "Vegetables",
+    "zh": "香芋",
+    "en": "purple taro",
+    "ipaBr": "/ˈpɜː.pl̩ ˈtɑː.roʊ/",
+    "ipaAm": "/ˈpɝː.pəl ˈtɑː.roʊ/",
+    "example": "Purple taro is often used in desserts."
+  },
+  {
+    "category": "Vegetables",
+    "zh": "白萝卜",
+    "en": "white radish",
+    "ipaBr": "/waɪt ˈræd.ɪʃ/",
+    "ipaAm": "/waɪt ˈræd.ɪʃ/",
+    "example": "White radish soup is light."
+  },
+  {
+    "category": "Vegetables",
+    "zh": "胡萝卜片",
+    "en": "carrot slice",
+    "ipaBr": "/ˈkær.ət slaɪs/",
+    "ipaAm": "/ˈkær.ət slaɪs/",
+    "example": "Add carrot slices to the salad."
+  },
+  {
+    "category": "Vegetables",
+    "zh": "蔬菜汤",
+    "en": "vegetable soup",
+    "ipaBr": "/ˈvedʒ.tə.bəl suːp/",
+    "ipaAm": "/ˈvedʒ.tə.bəl suːp/",
+    "example": "Vegetable soup is healthy."
+  },
+  {
+    "category": "Vegetables",
+    "zh": "蔬菜沙拉",
+    "en": "vegetable salad",
+    "ipaBr": "/ˈvedʒ.tə.bəl ˈsæl.əd/",
+    "ipaAm": "/ˈvedʒ.tə.bəl ˈsæl.əd/",
+    "example": "Vegetable salad is fresh."
+  },
+  {
+    "category": "Vegetables",
+    "zh": "豆腐",
+    "en": "tofu",
+    "ipaBr": "/ˈtəʊ.fuː/",
+    "ipaAm": "/ˈtoʊ.fuː/",
+    "example": "Tofu is high in protein."
+  },
+  {
+    "category": "Vegetables",
+    "zh": "白菜",
+    "en": "Chinese cabbage",
+    "ipaBr": "/ˈtʃaɪˌniːz ˈkæb.ɪdʒ/",
+    "ipaAm": "/ˈtʃaɪˌniːz ˈkæb.ɪdʒ/",
+    "example": "Chinese cabbage is soft and sweet."
+  },
+  {
+    "category": "Vegetables",
+    "zh": "菠菜汁",
+    "en": "spinach juice",
+    "ipaBr": "/ˈspɪn.ɪtʃ dʒuːs/",
+    "ipaAm": "/ˈspɪn.ɪtʃ dʒuːs/",
+    "example": "Spinach juice is full of nutrients."
+  },
+  {
+    "category": "Vegetables",
+    "zh": "茄汁",
+    "en": "tomato sauce",
+    "ipaBr": "/təˈmɑː.təʊ sɔːs/",
+    "ipaAm": "/təˈmeɪ.toʊ sɔːs/",
+    "example": "Tomato sauce is used on pasta."
+  },
+  {
+    "category": "Vegetables",
+    "zh": "豆浆",
+    "en": "soy milk",
+    "ipaBr": "/sɔɪ mɪlk/",
+    "ipaAm": "/sɔɪ mɪlk/",
+    "example": "Soy milk is a common breakfast drink."
   },
   {
     "category": "Daily",
@@ -706,10 +1002,10 @@
   {
     "category": "Daily",
     "zh": "杯子",
-    "en": "cup / mug",
+    "en": "cup",
     "ipaBr": "/kʌp/",
-    "ipaAm": "/mʌɡ/",
-    "example": "I drink coffee from a mug."
+    "ipaAm": "/kʌp/",
+    "example": "I drink water from a cup."
   },
   {
     "category": "Daily",
@@ -754,9 +1050,9 @@
   {
     "category": "Daily",
     "zh": "手电筒",
-    "en": "flashlight / torch",
-    "ipaBr": "/flæʃ.laɪt/",
-    "ipaAm": "/tɔːrtʃ/",
+    "en": "flashlight",
+    "ipaBr": "/ˈflæʃ.laɪt/",
+    "ipaAm": "/ˈflæʃ.laɪt/",
     "example": "Use a flashlight in the dark."
   },
   {
@@ -770,9 +1066,9 @@
   {
     "category": "Daily",
     "zh": "创可贴",
-    "en": "band-aid / plaster",
-    "ipaBr": "/ˈplɑː.stər/",
-    "ipaAm": "/ˈplæs.tɚ/",
+    "en": "band-aid",
+    "ipaBr": "/ˈbænd eɪd/",
+    "ipaAm": "/ˈbænd eɪd/",
     "example": "Put a band-aid on the cut."
   },
   {
@@ -802,18 +1098,18 @@
   {
     "category": "Daily",
     "zh": "耳机",
-    "en": "earphones / headphones",
-    "ipaBr": "/ˈɪə.fəʊnz/",
-    "ipaAm": "/ˈhedˌfoʊnz/",
+    "en": "headphones",
+    "ipaBr": "/ˈhed.foʊnz/",
+    "ipaAm": "/ˈhed.foʊnz/",
     "example": "Use headphones on the bus."
   },
   {
     "category": "Daily",
     "zh": "电脑",
-    "en": "computer / laptop",
+    "en": "computer",
     "ipaBr": "/kəmˈpjuː.tə/",
     "ipaAm": "/kəmˈpjuː.tɚ/",
-    "example": "I work on a laptop."
+    "example": "I work on a computer."
   },
   {
     "category": "Daily",
@@ -865,7 +1161,7 @@
   },
   {
     "category": "Daily",
-    "zh": "记事本",
+    "zh": "笔记本",
     "en": "notebook",
     "ipaBr": "/ˈnəʊt.bʊk/",
     "ipaAm": "/ˈnoʊt.bʊk/",
@@ -890,9 +1186,9 @@
   {
     "category": "Daily",
     "zh": "电视",
-    "en": "TV / television",
-    "ipaBr": "/ˈtel.ɪ.vɪʒ.ən/",
-    "ipaAm": "/ˈtel.əˌvɪʒ.ən/",
+    "en": "TV",
+    "ipaBr": "/ˈtiː.viː/",
+    "ipaAm": "/ˈtiː.viː/",
     "example": "Turn off the TV before bed."
   },
   {
@@ -922,9 +1218,9 @@
   {
     "category": "Daily",
     "zh": "沙发",
-    "en": "sofa / couch",
+    "en": "sofa",
     "ipaBr": "/ˈsəʊ.fə/",
-    "ipaAm": "/kaʊtʃ/",
+    "ipaAm": "/ˈsoʊ.fə/",
     "example": "Sit on the sofa and relax."
   },
   {
@@ -933,7 +1229,7 @@
     "en": "lamp",
     "ipaBr": "/læmp/",
     "ipaAm": "/læmp/",
-    "example": "Turn on the desk lamp."
+    "example": "Turn on the lamp."
   },
   {
     "category": "Daily",
@@ -966,5 +1262,69 @@
     "ipaBr": "/skɑːf/",
     "ipaAm": "/skɑːrf/",
     "example": "She wore a warm scarf."
+  },
+  {
+    "category": "Daily",
+    "zh": "帽子",
+    "en": "hat",
+    "ipaBr": "/hæt/",
+    "ipaAm": "/hæt/",
+    "example": "Put on your hat."
+  },
+  {
+    "category": "Daily",
+    "zh": "手套",
+    "en": "gloves",
+    "ipaBr": "/ɡlʌvz/",
+    "ipaAm": "/ɡlʌvz/",
+    "example": "Wear gloves in winter."
+  },
+  {
+    "category": "Daily",
+    "zh": "手机",
+    "en": "mobile phone",
+    "ipaBr": "/ˈməʊ.baɪl fəʊn/",
+    "ipaAm": "/ˈmoʊ.bəl foʊn/",
+    "example": "Where is my mobile phone?"
+  },
+  {
+    "category": "Daily",
+    "zh": "相机",
+    "en": "camera",
+    "ipaBr": "/ˈkæm.rə/",
+    "ipaAm": "/ˈkæm.rə/",
+    "example": "He bought a new camera."
+  },
+  {
+    "category": "Daily",
+    "zh": "书",
+    "en": "book",
+    "ipaBr": "/bʊk/",
+    "ipaAm": "/bʊk/",
+    "example": "I read a book before bed."
+  },
+  {
+    "category": "Daily",
+    "zh": "铅笔",
+    "en": "pencil",
+    "ipaBr": "/ˈpen.səl/",
+    "ipaAm": "/ˈpen.səl/",
+    "example": "Sharpen your pencil."
+  },
+  {
+    "category": "Daily",
+    "zh": "橡皮",
+    "en": "eraser",
+    "ipaBr": "/ɪˈreɪ.zər/",
+    "ipaAm": "/ɪˈreɪ.zɚ/",
+    "example": "Use an eraser to correct mistakes."
+  },
+  {
+    "category": "Daily",
+    "zh": "日历",
+    "en": "calendar",
+    "ipaBr": "/ˈkæl.ən.də/",
+    "ipaAm": "/ˈkæl.ən.dɚ/",
+    "example": "Check the date on the calendar."
   }
 ]
