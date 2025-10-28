@@ -12,7 +12,6 @@ TITLE = "Daily Words by Rubby"
 def esc(s):
     return (s or "").replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;")
 
-
 LOGO_A = r'''<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 96 96"><circle cx="48" cy="48" r="44" fill="#2563EB"/><text x="22" y="57" font-size="30" fill="#fff" font-weight="800">D</text><text x="49" y="57" font-size="30" fill="#fff" font-weight="800">W</text></svg>'''
 LOGO_B = LOGO_A
 LOGO_C = LOGO_A
@@ -30,26 +29,28 @@ xmlns="http://www.w3.org/2000/svg">
 
 
 def build():
-
     site = Path(__file__).parent / "site"
     site.mkdir(exist_ok=True, parents=True)
 
-    # Generate JSON for script.js
-    data = []
+    # ✅ Generate full JSON data
+    all_words = []
     for cat, items in CATEGORIES.items():
-        for zh, en, br, am, ex in items:
-            data.append({
+        for zh, en, ipa_br, ipa_am, example in items:
+            all_words.append({
                 "category": cat,
                 "zh": zh,
                 "en": en,
-                "ipa_br": br,
-                "ipa_am": am,
-                "example": ex
+                "ipaBr": ipa_br,
+                "ipaAm": ipa_am,
+                "example": example
             })
 
-    (site / "data.json").write_text(json.dumps(data, ensure_ascii=False), encoding="utf-8")
+    with open(site / "data.json", "w", encoding="utf-8") as f:
+        json.dump(all_words, f, ensure_ascii=False, indent=2)
 
-    # ✅ External JS reference
+    print(f"✅ Generated {len(all_words)} words in site/data.json")
+
+    # ✅ Build HTML page
     html = f"""
 <!doctype html>
 <html lang="zh-CN">
@@ -112,7 +113,6 @@ body {{
 
     <h1>{esc(TITLE)}</h1>
     <input id="search" placeholder="Search（中文/English）" style="width:100%;padding:12px;font-size:18px"/>
-
     <div id="list"></div>
 </div>
 
@@ -127,32 +127,9 @@ window.ICON_SPK = `{ICON_SPK}`;
 </body>
 </html>
 """
-
     (site / "index.html").write_text(html, encoding="utf-8")
     print("✅ Build Success: site/index.html")
 
 
 if __name__ == "__main__":
     build()
-# ✅ 确保 build_page.py 中包含以下逻辑
-import json
-from vocab_data import CATEGORIES
-
-def build_data_json():
-    all_words = []
-    for cat, items in CATEGORIES.items():
-        for zh, en, ipa_br, ipa_am, example in items:
-            all_words.append({
-                "category": cat,
-                "zh": zh,
-                "en": en,
-                "ipaBr": ipa_br,
-                "ipaAm": ipa_am,
-                "example": example
-            })
-    with open("site/data.json", "w", encoding="utf-8") as f:
-        json.dump(all_words, f, ensure_ascii=False, indent=2)
-    print(f"✅ Generated {len(all_words)} words in site/data.json")
-
-if __name__ == "__main__":
-    build_data_json()
