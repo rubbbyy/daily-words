@@ -134,3 +134,25 @@ window.ICON_SPK = `{ICON_SPK}`;
 
 if __name__ == "__main__":
     build()
+# ✅ 确保 build_page.py 中包含以下逻辑
+import json
+from vocab_data import CATEGORIES
+
+def build_data_json():
+    all_words = []
+    for cat, items in CATEGORIES.items():
+        for zh, en, ipa_br, ipa_am, example in items:
+            all_words.append({
+                "category": cat,
+                "zh": zh,
+                "en": en,
+                "ipaBr": ipa_br,
+                "ipaAm": ipa_am,
+                "example": example
+            })
+    with open("site/data.json", "w", encoding="utf-8") as f:
+        json.dump(all_words, f, ensure_ascii=False, indent=2)
+    print(f"✅ Generated {len(all_words)} words in site/data.json")
+
+if __name__ == "__main__":
+    build_data_json()
