@@ -74,3 +74,42 @@ searchInput.addEventListener("input", render);
 
 // ---- Init logo ----
 setLogo();
+// ✅ 显示单词统计
+function showCount(total, filtered) {
+  let footer = document.getElementById("count");
+  if (!footer) {
+    footer = document.createElement("div");
+    footer.id = "count";
+    footer.style.margin = "30px 0";
+    footer.style.textAlign = "center";
+    footer.style.color = "#555";
+    document.body.appendChild(footer);
+  }
+  footer.textContent = `Showing ${filtered} / ${total} words`;
+}
+
+// ✅ 每次加载或筛选后更新计数
+let allData = [];
+fetch("site/data.json")
+  .then(r => r.json())
+  .then(data => {
+    allData = data;
+    renderList(allData);
+    showCount(allData.length, allData.length);
+  });
+
+function renderList(data) {
+  const list = document.getElementById("list");
+  list.innerHTML = "";
+  data.forEach(w => {
+    const card = document.createElement("div");
+    card.className = "card";
+    card.innerHTML = `
+      <div class="word">${w.en} <span style="color:#555;font-size:16px;">${w.zh}</span></div>
+      <div>${w.ipaBr} | ${w.ipaAm}</div>
+      <div style="color:#555;">${w.example}</div>
+    `;
+    list.appendChild(card);
+  });
+  showCount(allData.length, data.length);
+}
